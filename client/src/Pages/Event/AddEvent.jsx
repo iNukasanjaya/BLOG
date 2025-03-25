@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+import { useNavigate } from 'react-router-dom';
 
 function AddEvent() {
   const [formData, setFormData] = useState({
@@ -14,6 +15,7 @@ function AddEvent() {
   });
   const [errors, setErrors] = useState({});
   const [imagePreview, setImagePreview] = useState(null);
+  const navigate = useNavigate();
 
   const validate = () => {
     let newErrors = {};
@@ -66,6 +68,11 @@ function AddEvent() {
     e.preventDefault();
     if (validate()) {
       try {
+        const token = localStorage.getItem('token'); // Retrieve token from localStorage
+        if (!token) {
+          throw new Error('No token found. Please log in.');
+        }
+        
         const formDataToSend = new FormData();
         formDataToSend.append("title", formData.title);
         formDataToSend.append("price", formData.price);
@@ -79,12 +86,13 @@ function AddEvent() {
         const response = await axios.post('http://localhost:5185/api/events', formDataToSend, {
           headers: {
             'Content-Type': 'multipart/form-data',
-            'Authorization': 'Bearer YOUR_JWT_TOKEN_HERE', // Replace with actual token
+            'Authorization': `Bearer ${token}`, // Replace with actual token
           },
         });
 
         console.log("Event created:", response.data);
         alert("Event added successfully!");
+        navigate('/events');
         // Optionally reset form
         setFormData({
           title: "",
@@ -105,7 +113,7 @@ function AddEvent() {
   };
 
   return (
-    <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md mt-10">
+    <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md my-10">
       <h2 className="text-2xl font-extrabold text-center mb-6">Add Event</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

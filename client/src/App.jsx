@@ -12,6 +12,10 @@ import EventDetails from './Components/EventDetails'
 import Dashboard from './Pages/Dashboard'
 import AddEvent from './Pages/Event/AddEvent'
 import UpdateEvent from './Pages/Event/UpdateEvent'
+import EventList from './Pages/Event/EventList'
+import EventLayout from './Components/EventLayout'
+import ProtectedRoute from './Components/ProtectedRoute'
+import ArticleList from './Pages/Event/ArticleList'
 
 function App() {
   
@@ -22,15 +26,22 @@ function App() {
       
       <Routes>
         <Route path='/' element={<Hero />}></Route>
-        <Route path='/events' element={<Events />}></Route>
+        <Route path='/event-page' element={<Events />}></Route>
         <Route path='/eventdetails' element={<EventDetails />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
         <Route path='/acc' element={<AccDetails />}></Route>
         <Route path='/nav' element={<Navbar />}></Route>
-        <Route path='/admin' element={<Dashboard />}></Route>
-        <Route path='/add' element={<AddEvent />}></Route>
-        <Route path='/update/:id' element={<UpdateEvent />}></Route>
+        <Route path='/dashboard' element={<Dashboard />}></Route>
+        
+        <Route path='/list' element={<EventList />}></Route>
+        <Route element={<EventLayout />}>
+          <Route path='/events' element={<ProtectedRoute requiredRole="EventAdmin"><EventList /></ProtectedRoute>}/>
+          <Route path='/events/add' element={<ProtectedRoute requiredRole="EventAdmin"><AddEvent /></ProtectedRoute>}/>
+          <Route path='/events/update/:id' element={<ProtectedRoute requiredRole="EventAdmin"><UpdateEvent /></ProtectedRoute>}/>
+
+          <Route path='/articles' element={<ProtectedRoute requiredRole="ArticleAdmin"><ArticleList /></ProtectedRoute>}/>
+        </Route>
       </Routes>
       </BrowserRouter>
     </div>

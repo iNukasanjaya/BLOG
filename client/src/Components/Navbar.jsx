@@ -18,7 +18,7 @@ function Navbar() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex space-x-10">
           <Link to="/" className="text-white font-medium hover:text-gray-400 transition">Home</Link>
-          <Link to="/events" className="text-white font-medium hover:text-gray-400 transition">Events</Link>
+          <Link to="/event-page" className="text-white font-medium hover:text-gray-400 transition">Events</Link>
           <Link to="/acc" className="text-white font-medium hover:text-gray-400 transition">Movies</Link>
           <Link to="/acc" className="text-white font-medium hover:text-gray-400 transition">Ads</Link>
           <Link to="/acc" className="text-white font-medium hover:text-gray-400 transition">About</Link>

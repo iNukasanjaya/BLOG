@@ -33,7 +33,7 @@ function UpdateEvent() {
           description: event.description,
           date: formattedDate,
           time: event.time,
-          location: event.venue, // Map 'venue' from backend to 'location' in form
+          location: event.location, 
           category: event.category,
           image: null, // Image will be updated if a new one is uploaded
         });
@@ -96,6 +96,11 @@ function UpdateEvent() {
     e.preventDefault();
     if (validate()) {
       try {
+        const token = localStorage.getItem('token'); // Retrieve token from localStorage
+        if (!token) {
+          throw new Error('No token found. Please log in.');
+        }
+        
         const formDataToSend = new FormData();
         formDataToSend.append("title", formData.title);
         formDataToSend.append("price", formData.price);
@@ -111,7 +116,7 @@ function UpdateEvent() {
         const response = await axios.put(`http://localhost:5185/api/events/${id}`, formDataToSend, {
           headers: {
             'Content-Type': 'multipart/form-data',
-            'Authorization': 'Bearer YOUR_JWT_TOKEN_HERE', // Replace with actual token
+            'Authorization': `Bearer ${token}`, // Replace with actual token
           },
         });
 
@@ -136,7 +141,7 @@ function UpdateEvent() {
   }
 
   return (
-    <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md mt-10">
+    <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md my-10">
       <h2 className="text-2xl font-extrabold text-center mb-6">Update Event</h2>
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>

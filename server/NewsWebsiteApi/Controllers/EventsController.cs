@@ -36,7 +36,7 @@ public class EventsController : ControllerBase
     }
 
     [HttpPost]
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "EventAdmin")]
     public async Task<ActionResult<Event>> Create()
     {
         var form = await Request.ReadFormAsync();
@@ -63,7 +63,7 @@ public class EventsController : ControllerBase
             Description = form["description"].ToString() ?? string.Empty,
             Date = parsedDate,
             Time = form["time"].ToString() ?? string.Empty,
-            Location = form["location"].ToString() ?? string.Empty, // Map 'location' from form to Venue
+            Location = form["location"].ToString() ?? string.Empty,
             Category = form["category"].ToString() ?? string.Empty,
             CreatedBy = User.Identity.Name ?? "Anonymous"// Assuming JWT includes username
         };
@@ -94,7 +94,7 @@ public class EventsController : ControllerBase
     }
 
     [HttpPut("{id}")]
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "EventAdmin")]
     public async Task<IActionResult> Update(string id)
     {
         var existingEvent = await _eventService.GetByIdAsync(id);
@@ -150,7 +150,7 @@ public class EventsController : ControllerBase
     }
 
     [HttpDelete("{id}")]
-    //[Authorize(Roles = "Admin")]
+    [Authorize(Roles = "EventAdmin")]
     public async Task<IActionResult> Delete(string id)
     {
         var existingEvent = await _eventService.GetByIdAsync(id);

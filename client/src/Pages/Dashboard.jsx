@@ -1,20 +1,6 @@
 import React from 'react';
-
-const Sidebar = () => {
-  return (
-    <div className="bg-gray-900 text-white w-64 min-h-screen p-5">
-      <h2 className="text-2xl font-semibold mb-6 text-center">Admin Dashboard</h2>
-      <ul className="space-y-4">
-        <li><a href="#" className="block px-4 py-2 bg-gray-600 hover:bg-gray-800 rounded">🏡 Dashboard</a></li>
-        <li><a href="#" className="block px-4 py-2 bg-gray-600 hover:bg-gray-800 rounded">📝 Article Management</a></li>
-        <li><a href="#" className="block px-4 py-2 bg-gray-600 hover:bg-gray-800 rounded">🗞️ Event Management</a></li>
-        <li><a href="#" className="block px-4 py-2 bg-gray-600 hover:bg-gray-800 rounded">👨‍💻 Advertisement Management</a></li>
-        <li><a href="#" className="block px-4 py-2 bg-gray-600 hover:bg-gray-800 rounded">📷 Media Management</a></li>
-      </ul>
-      <button className="mt-6 w-full bg-red-600 hover:bg-red-700 py-2 rounded">Logout</button>
-    </div>
-  );
-};
+import { Link, useNavigate } from 'react-router-dom';
+import Sidebar from '../Components/Sidebar';
 
 const StatsCard = ({ title, count, borderColor }) => {
   return (

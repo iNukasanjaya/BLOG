@@ -1,10 +1,12 @@
 import React from 'react'
 import EventCard from '../Components/EventCard'
 import Hero from './Hero'
+import Navbar from '../Components/Navbar'
 
 function Events() {
   return (
     <>
+    <Navbar />
     <Hero />
     <div id="event-list" className="py-16 px-6 md:px-12 bg-blue-50">
       <h2 className="text-3xl font-bold p-6 text-gray-800 text-center">Upcoming Events</h2>
