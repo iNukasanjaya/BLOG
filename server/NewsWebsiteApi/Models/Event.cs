@@ -13,6 +13,6 @@ public class Event
     public string Location { get; set; } = string.Empty; 
     public string Category { get; set; } = string.Empty;
     public string ImageUrl { get; set; } = string.Empty;
-    public string Status { get; set; } = "Draft";
     public string CreatedBy { get; set; } = string.Empty;
+    public DateTime CreatedAt { get; set; } = DateTime.UtcNow;
 }

@@ -6,6 +6,7 @@ function EventList() {
   const [events, setEvents] = useState([]);
   const [filteredEvents, setFilteredEvents] = useState([]);
   const [searchTerm, setSearchTerm] = useState('');
+  const [sortOption, setSortOption] = useState('default'); // Default sort option
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const navigate = useNavigate();
@@ -34,8 +35,31 @@ function EventList() {
       event.location.toLowerCase().includes(searchTerm.toLowerCase()) ||
       event.category.toLowerCase().includes(searchTerm.toLowerCase())
     );
-    setFilteredEvents(filtered);
-  }, [searchTerm, events]);
+    // Then, sort the filtered events based on the sortOption
+    if (sortOption !== 'default') {
+        filtered.sort((a, b) => {
+          if (sortOption === 'newest-added-first') {
+            const createdAtA = new Date(a.createdAt).getTime() || 0;
+            const createdAtB = new Date(b.createdAt).getTime() || 0;
+            return createdAtB - createdAtA;  
+          } else if (sortOption === 'date-new-to-old') {
+            // Sort by date, descending (newest to oldest)
+            return new Date(b.date).getTime() - new Date(a.date).getTime();
+          } else if (sortOption === 'date-old-to-new') {
+            // Sort by date, ascending (oldest to newest)
+            return new Date(a.date).getTime() - new Date(b.date).getTime();
+          } else if (sortOption === 'price-up-to-down') {
+            // Sort by price, ascending (lowest to highest)
+            return a.price - b.price;
+          } else if (sortOption === 'price-down-to-up') {
+            // Sort by price, descending (highest to lowest)
+            return b.price - a.price;
+          }
+          return 0; // Shouldn't reach here, but added for safety
+        });
+      }
+    setFilteredEvents([...filtered]);
+  }, [searchTerm, events, sortOption]);
 
   // Handle delete
   const handleDelete = async (id) => {
@@ -56,7 +80,13 @@ function EventList() {
         alert('Event deleted successfully!');
       } catch (err) {
         console.error('Error deleting event:', err);
+        if (err.response?.status === 401 || err.message === 'No token found. Please log in.') {
+          localStorage.removeItem('token');
+          alert('Session expired. Please log in again.');
+          navigate('/login');
+        } else {
         alert(err.message || 'Failed to delete event. Please try again.');
+        }
       }
     }
   };
@@ -97,8 +127,8 @@ function EventList() {
         </div>
       </div>
 
-      {/* Search Bar */}
-      <div className="mb-6">
+      {/* Search Bar and Sort Options */}
+      <div className="mb-6 flex items-center space-x-4">
         <input
           type="text"
           placeholder="Search events by title, venue, or category..."
@@ -106,6 +136,24 @@ function EventList() {
           onChange={(e) => setSearchTerm(e.target.value)}
           className="w-1/3 p-3 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
         />
+        <div className="flex items-center space-x-2">
+          <label htmlFor="sortOption" className="text-gray-600 font-medium">
+            Sort By:
+          </label>
+          <select
+            id="sortOption"
+            value={sortOption}
+            onChange={(e) => setSortOption(e.target.value)}
+            className="p-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition duration-300"
+          >
+            <option value="default">Default</option>
+            <option value="newest-added-first">Newest Added First</option>
+            <option value="date-new-to-old">Date (New to Old)</option>
+            <option value="date-old-to-new">Date (Old to New)</option>
+            <option value="price-up-to-down">Price (Up to Down)</option>
+            <option value="price-down-to-up">Price (Down to Up)</option>
+          </select>
+        </div>
       </div>
 
       {/* Events Table */}

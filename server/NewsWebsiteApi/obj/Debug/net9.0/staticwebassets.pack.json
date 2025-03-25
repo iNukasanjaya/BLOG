@@ -21,6 +21,10 @@
       "PackagePath": "staticwebassets\\uploads\\30244870-2030-49c7-9376-74772ec99f4b.png"
     },
     {
+      "Id": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\wwwroot\\uploads\\3cf13d59-fee8-4233-965f-0a60b725534a.png",
+      "PackagePath": "staticwebassets\\uploads\\3cf13d59-fee8-4233-965f-0a60b725534a.png"
+    },
+    {
       "Id": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\wwwroot\\uploads\\40991f4a-b4be-4b24-bd3d-e32f66a124c6.png",
       "PackagePath": "staticwebassets\\uploads\\40991f4a-b4be-4b24-bd3d-e32f66a124c6.png"
     },
@@ -51,6 +55,10 @@
     {
       "Id": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\wwwroot\\uploads\\71b66354-8b23-4450-976f-4ff21f7f531a.png",
       "PackagePath": "staticwebassets\\uploads\\71b66354-8b23-4450-976f-4ff21f7f531a.png"
+    },
+    {
+      "Id": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\wwwroot\\uploads\\763fcef0-3278-43ff-9cd2-86b9339214f1.png",
+      "PackagePath": "staticwebassets\\uploads\\763fcef0-3278-43ff-9cd2-86b9339214f1.png"
     },
     {
       "Id": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\wwwroot\\uploads\\768b723a-655e-4431-a7e3-5d5a38077d98.png",
@@ -97,8 +105,16 @@
       "PackagePath": "staticwebassets\\uploads\\d59f7e43-fdc9-47bd-be12-6af0bbc132cd.png"
     },
     {
+      "Id": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\wwwroot\\uploads\\d5be8f02-58de-4cfb-95fb-5cded1333c4a.png",
+      "PackagePath": "staticwebassets\\uploads\\d5be8f02-58de-4cfb-95fb-5cded1333c4a.png"
+    },
+    {
       "Id": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\wwwroot\\uploads\\db29d671-def9-4acd-beba-c100515bf6af.png",
       "PackagePath": "staticwebassets\\uploads\\db29d671-def9-4acd-beba-c100515bf6af.png"
+    },
+    {
+      "Id": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\wwwroot\\uploads\\e95c849f-ac7e-46af-a1b3-9baafe25b93f.png",
+      "PackagePath": "staticwebassets\\uploads\\e95c849f-ac7e-46af-a1b3-9baafe25b93f.png"
     },
     {
       "Id": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\wwwroot\\uploads\\ea13d521-bcfb-469b-a2a7-27a0162637b7.png",
@@ -107,6 +123,10 @@
     {
       "Id": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\wwwroot\\uploads\\f10a64c3-6ae3-4e83-a349-87188b4bb756.png",
       "PackagePath": "staticwebassets\\uploads\\f10a64c3-6ae3-4e83-a349-87188b4bb756.png"
+    },
+    {
+      "Id": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\wwwroot\\uploads\\f291e511-ecb3-4769-b5bf-3b14ba73170b.png",
+      "PackagePath": "staticwebassets\\uploads\\f291e511-ecb3-4769-b5bf-3b14ba73170b.png"
     },
     {
       "Id": "obj\\Debug\\net9.0\\staticwebassets\\msbuild.NewsWebsiteApi.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
