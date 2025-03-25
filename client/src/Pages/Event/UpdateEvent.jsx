@@ -100,7 +100,7 @@ function UpdateEvent() {
         if (!token) {
           throw new Error('No token found. Please log in.');
         }
-        
+
         const formDataToSend = new FormData();
         formDataToSend.append("title", formData.title);
         formDataToSend.append("price", formData.price);
@@ -221,8 +221,8 @@ function UpdateEvent() {
           >
             <option value="">Select a category</option>
             <option value="Journalism">Journalism</option>
-            <option value="Content Creation">Content Creation</option>
-            <option value="Media Tech">Media Tech</option>
+            <option value="Economical">Econimical</option>
+            <option value="Musical">Musical</option>
           </select>
           {errors.category && <p className="text-red-500 text-sm">{errors.category}</p>}
         </div>
