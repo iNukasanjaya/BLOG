@@ -15,9 +15,10 @@ import UpdateEvent from './Pages/Event/UpdateEvent'
 import EventList from './Pages/Event/EventList'
 import EventLayout from './Components/EventLayout'
 import ProtectedRoute from './Components/ProtectedRoute'
-import ArticleList from './Pages/Event/ArticleList'
-import AddArticle from './Pages/Event/AddArticle'
-import UpdateArticle from './Pages/Event/UpdateArticle'
+import ArticleList from './Pages/Article/ArticleList'
+import AddArticle from './Pages/Article/AddArticle'
+import UpdateArticle from './Pages/Article/UpdateArticle'
+
 
 function App() {
   
