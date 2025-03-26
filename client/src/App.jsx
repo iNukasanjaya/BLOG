@@ -16,6 +16,8 @@ import EventList from './Pages/Event/EventList'
 import EventLayout from './Components/EventLayout'
 import ProtectedRoute from './Components/ProtectedRoute'
 import ArticleList from './Pages/Event/ArticleList'
+import AddArticle from './Pages/Event/AddArticle'
+import UpdateArticle from './Pages/Event/UpdateArticle'
 
 function App() {
   
@@ -27,7 +29,7 @@ function App() {
       <Routes>
         <Route path='/' element={<Hero />}></Route>
         <Route path='/event-page' element={<Events />}></Route>
-        <Route path='/eventdetails' element={<EventDetails />}></Route>
+        <Route path='/eventdetails/:id' element={<EventDetails />}></Route>
         <Route path='/login' element={<Login />}></Route>
         <Route path='/signup' element={<SignUp />}></Route>
         <Route path='/acc' element={<AccDetails />}></Route>
@@ -41,6 +43,8 @@ function App() {
           <Route path='/events/update/:id' element={<ProtectedRoute requiredRole="EventAdmin"><UpdateEvent /></ProtectedRoute>}/>
 
           <Route path='/articles' element={<ProtectedRoute requiredRole="ArticleAdmin"><ArticleList /></ProtectedRoute>}/>
+          <Route path='/articles/add' element={<ProtectedRoute requiredRole="ArticleAdmin"><AddArticle /></ProtectedRoute>}/>
+          <Route path='/articles/update/:id' element={<ProtectedRoute requiredRole="ArticleAdmin"><UpdateArticle /></ProtectedRoute>}/>
         </Route>
       </Routes>
       </BrowserRouter>
