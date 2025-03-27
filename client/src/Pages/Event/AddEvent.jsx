@@ -15,34 +15,66 @@ function AddEvent() {
   });
   const [errors, setErrors] = useState({});
   const [imagePreview, setImagePreview] = useState(null);
+  const [generalError, setGeneralError] = useState(null); // For backend errors
+  const [loading, setLoading] = useState(false); // Add loading state
   const navigate = useNavigate();
 
   const validate = () => {
     let newErrors = {};
-    if (!/^[a-zA-Z0-9 ]+$/.test(formData.title)) {
+
+    // Title validation
+    if (!formData.title) {
+      newErrors.title = "Title is required.";
+    } else if (formData.title.length < 5) {
+      newErrors.title = "Title must be at least 5 characters long.";
+    } else if (!/^[a-zA-Z0-9 ]+$/.test(formData.title)) {
       newErrors.title = "Title can only include letters, numbers, and spaces.";
     }
-    if (!formData.price || isNaN(formData.price) || formData.price <= 0) {
-      newErrors.price = "Enter a valid price.";
+
+    // Price validation
+    if (formData.price === '' || isNaN(formData.price) || Number(formData.price) < 0) {
+      newErrors.price = "Price must be a positive number.";
     }
+
+    // Description validation
     if (!formData.description) {
       newErrors.description = "Description is required.";
+    } else if (formData.description.length < 20) {
+      newErrors.description = "Description must be at least 20 characters long.";
     }
+
+    // Date validation
+    const selectedDate = new Date(formData.date);
+    const today = new Date();
+    today.setHours(0, 0, 0, 0); // Reset time to midnight for comparison
     if (!formData.date) {
       newErrors.date = "Date is required.";
+    } else if (selectedDate < today) {
+      newErrors.date = "Date must not be in the past.";
     }
+
+    // Time validation
     if (!formData.time) {
       newErrors.time = "Time is required.";
+    } else if (!/^\d{2}:\d{2}$/.test(formData.time)) {
+      newErrors.time = "Time must be in the format HH:mm (e.g., 14:30).";
     }
+
+    // Location validation
     if (!formData.location) {
       newErrors.location = "Location is required.";
     }
+
+    // Category validation
     if (!formData.category) {
-      newErrors.category = "Category is required."; 
+      newErrors.category = "Category is required.";
     }
+
+    // Image validation
     if (!formData.image) {
       newErrors.image = "Image is required.";
     }
+
     setErrors(newErrors);
     return Object.keys(newErrors).length === 0;
   };
@@ -53,6 +85,7 @@ function AddEvent() {
     if (errors[name]) {
       setErrors({ ...errors, [name]: "" });
     }
+    setGeneralError(null); // Clear general error on change
   };
 
   const handleImageChange = (e) => {
@@ -62,10 +95,14 @@ function AddEvent() {
       setImagePreview(URL.createObjectURL(file));
       setErrors({ ...errors, image: "" });
     }
+    setGeneralError(null); // Clear general error on change
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setLoading(true); // Set loading to true
+    setGeneralError(null); // Clear previous general errors
+
     if (validate()) {
       try {
         const token = localStorage.getItem('token'); // Retrieve token from localStorage
@@ -79,21 +116,21 @@ function AddEvent() {
         formDataToSend.append("description", formData.description);
         formDataToSend.append("date", formData.date);
         formDataToSend.append("time", formData.time);
-        formDataToSend.append("location", formData.location); // Map venue to location
+        formDataToSend.append("location", formData.location);
         formDataToSend.append("category", formData.category);
         formDataToSend.append("image", formData.image);
 
         const response = await axios.post('http://localhost:5185/api/events', formDataToSend, {
           headers: {
             'Content-Type': 'multipart/form-data',
-            'Authorization': `Bearer ${token}`, // Replace with actual token
+            'Authorization': `Bearer ${token}`,
           },
         });
 
         console.log("Event created:", response.data);
         alert("Event added successfully!");
         navigate('/events');
-        // Optionally reset form
+        // Reset form
         setFormData({
           title: "",
           price: "",
@@ -105,20 +142,26 @@ function AddEvent() {
           image: null,
         });
         setImagePreview(null);
+        setErrors({});
       } catch (error) {
         console.error("Error submitting form:", error);
-        alert("Failed to add event. Please try again.");
+        const errorMessage = error.response?.data || error.message;
+        setGeneralError('Failed to add event: ' + (typeof errorMessage === 'string' ? errorMessage : JSON.stringify(errorMessage)));
+      } finally {
+        setLoading(false); // Reset loading state
       }
+    } else {
+      setLoading(false); // Reset loading if validation fails
     }
   };
 
   return (
     <div className="max-w-2xl mx-auto bg-white p-6 rounded-lg shadow-md my-10">
       <h2 className="text-2xl font-extrabold text-center mb-6">Add Event</h2>
+      {generalError && <p className="text-red-500 text-center mb-4 text-sm">{generalError}</p>}
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
-          <label className="block do not break lines: 1
-block font-medium">Title</label>
+          <label className="block font-medium">Title</label>
           <input
             type="text"
             name="title"
@@ -157,6 +200,7 @@ block font-medium">Title</label>
               name="date"
               value={formData.date}
               onChange={handleChange}
+              min={new Date().toISOString().split('T')[0]} // Set minimum date to today
               className={`w-full p-2 border ${errors.date ? "border-red-500" : "border-gray-300"} rounded`}
             />
             {errors.date && <p className="text-red-500 text-sm">{errors.date}</p>}
@@ -201,11 +245,22 @@ block font-medium">Title</label>
         </div>
         <div>
           <label className="block font-medium">Event Image</label>
-          <input type="file" accept="image/*" onChange={handleImageChange} className="w-full" />
+          <input
+            type="file"
+            accept="image/*"
+            onChange={handleImageChange}
+            className={`w-full p-2 border ${errors.image ? "border-red-500" : "border-gray-300"} rounded`}
+          />
           {errors.image && <p className="text-red-500 text-sm">{errors.image}</p>}
           {imagePreview && <img src={imagePreview} alt="Preview" className="mt-2 w-32 h-32 object-cover rounded" />}
         </div>
-        <button className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded">Submit</button>
+        <button
+          type="submit"
+          className={`w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          disabled={loading}
+        >
+          {loading ? 'Submitting...' : 'Submit'}
+        </button>
       </form>
     </div>
   );

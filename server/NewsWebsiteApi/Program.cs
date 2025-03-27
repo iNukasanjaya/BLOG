@@ -5,21 +5,17 @@ using MongoDB.Driver;
 using System.Text;
 using NewsWebsiteApi.Models;
 using NewsWebsiteApi.Services;
-using System.Net;
 
 var builder = WebApplication.CreateBuilder(args);
-
-// Force TLS 1.2 for MongoDB Atlas
-
 
 // Add CORS
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", builder =>
     {
-        builder.AllowAnyOrigin() // Allow all origins (for development)
-               .AllowAnyMethod() // Allow all HTTP methods (GET, POST, etc.)
-               .AllowAnyHeader(); // Allow all headers
+        builder.AllowAnyOrigin()
+               .AllowAnyMethod()
+               .AllowAnyHeader();
     });
 });
 
@@ -32,6 +28,7 @@ builder.Services.AddScoped(sp =>
     sp.GetRequiredService<IMongoClient>()
         .GetDatabase(sp.GetRequiredService<IOptions<MongoDbSettings>>().Value.DatabaseName));
 builder.Services.AddScoped<IEventService, EventService>();
+//builder.Services.AddScoped<IArticleService, ArticleService>(); // Add this for articles
 
 // JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
