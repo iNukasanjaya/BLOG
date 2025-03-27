@@ -5,7 +5,7 @@ const EventCard = ({ event }) => {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-white shadow-lg rounded-xl overflow-hidden w-full sm:w-80 transform transition duration-300 hover:rotate-3">
+    <div className="bg-white shadow-lg rounded-xl overflow-hidden w-full sm:w-80 transform transition duration-300 hover:scale-105 hover:rotate-3">
       {/* Event Image */}
       <img
         src={event.imageUrl ? `http://localhost:5185${event.imageUrl}` : 'https://via.placeholder.com/300x200?text=No+Image'}
