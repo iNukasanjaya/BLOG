@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("NewsWebsiteApi")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0048eb6388fbaea080a83f52a10090ccb4489d8a")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+16100f084b1b2c98bc0bc1c556c2920066dc6250")]
 [assembly: System.Reflection.AssemblyProductAttribute("NewsWebsiteApi")]
 [assembly: System.Reflection.AssemblyTitleAttribute("NewsWebsiteApi")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
