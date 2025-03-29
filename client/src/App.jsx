@@ -18,6 +18,11 @@ import ProtectedRoute from './Components/ProtectedRoute'
 import ArticleList from './Pages/Article/ArticleList'
 import AddArticle from './Pages/Article/AddArticle'
 import UpdateArticle from './Pages/Article/UpdateArticle'
+import AdvertisementList from './Pages/Advertisement/AdvertisementList'
+import AddAdvertisement from './Pages/Advertisement/AddAdvertisement'
+import UpdateAdvertisement from './Pages/Advertisement/UpdateAdvertisement'
+import AddMedia from './Pages/Media/AddMedia'
+import UpdateMedia from './Pages/Media/UpdateMedia'
 
 
 function App() {
@@ -46,6 +51,14 @@ function App() {
           <Route path='/articles' element={<ProtectedRoute requiredRole="ArticleAdmin"><ArticleList /></ProtectedRoute>}/>
           <Route path='/articles/add' element={<ProtectedRoute requiredRole="ArticleAdmin"><AddArticle /></ProtectedRoute>}/>
           <Route path='/articles/update/:id' element={<ProtectedRoute requiredRole="ArticleAdmin"><UpdateArticle /></ProtectedRoute>}/>
+
+          <Route path='/advertisements' element={<ProtectedRoute requiredRole="AdvertisementAdmin"><AdvertisementList /></ProtectedRoute>}/>
+          <Route path='/advertisements/add' element={<ProtectedRoute requiredRole="AdvertisementAdmin"><AddAdvertisement /></ProtectedRoute>}/>
+          <Route path='/advertisements/update/:id' element={<ProtectedRoute requiredRole="AdvertisementAdmin"><UpdateAdvertisement /></ProtectedRoute>}/>
+
+          <Route path='/media' element={<ProtectedRoute requiredRole="MediaAdmin"><MediaList /></ProtectedRoute>}/>
+          <Route path='/media/add' element={<ProtectedRoute requiredRole="MediaAdmin"><AddMedia /></ProtectedRoute>}/>
+          <Route path='/media/update/:id' element={<ProtectedRoute requiredRole="MediaAdmin"><UpdateMedia /></ProtectedRoute>}/>
         </Route>
       </Routes>
       </BrowserRouter>
