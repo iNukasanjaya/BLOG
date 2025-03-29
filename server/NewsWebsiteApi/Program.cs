@@ -28,7 +28,9 @@ builder.Services.AddScoped(sp =>
     sp.GetRequiredService<IMongoClient>()
         .GetDatabase(sp.GetRequiredService<IOptions<MongoDbSettings>>().Value.DatabaseName));
 builder.Services.AddScoped<IEventService, EventService>();
-//builder.Services.AddScoped<IArticleService, ArticleService>(); // Add this for articles
+builder.Services.AddScoped<IArticleService, ArticleService>(); 
+builder.Services.AddScoped<IAdvertisementService, AdvertisementService>();
+builder.Services.AddScoped<IMediaService, MediaService>();
 
 // JWT Authentication
 builder.Services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme)
