@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\NewsWebsiteApi.csproj": {}
+    "C:\\Users\\kshma\\Desktop\\Pro\\BLOG\\server\\NewsWebsiteApi\\NewsWebsiteApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\NewsWebsiteApi.csproj": {
+    "C:\\Users\\kshma\\Desktop\\Pro\\BLOG\\server\\NewsWebsiteApi\\NewsWebsiteApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\NewsWebsiteApi.csproj",
+        "projectUniqueName": "C:\\Users\\kshma\\Desktop\\Pro\\BLOG\\server\\NewsWebsiteApi\\NewsWebsiteApi.csproj",
         "projectName": "NewsWebsiteApi",
-        "projectPath": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\NewsWebsiteApi.csproj",
-        "packagesPath": "C:\\Users\\inuka\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\inuka\\Desktop\\BLOG\\server\\NewsWebsiteApi\\obj\\",
+        "projectPath": "C:\\Users\\kshma\\Desktop\\Pro\\BLOG\\server\\NewsWebsiteApi\\NewsWebsiteApi.csproj",
+        "packagesPath": "C:\\Users\\kshma\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\kshma\\Desktop\\Pro\\BLOG\\server\\NewsWebsiteApi\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\inuka\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\kshma\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net9.0"
@@ -84,7 +84,7 @@
               "privateAssets": "all"
             }
           },
-          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.202/PortableRuntimeIdentifierGraph.json"
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\9.0.201/PortableRuntimeIdentifierGraph.json"
         }
       }
     }
