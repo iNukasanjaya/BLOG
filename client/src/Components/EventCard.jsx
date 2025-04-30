@@ -28,7 +28,7 @@ const EventCard = ({ event }) => {
         {/* CTA Button */}
         <button
           onClick={() => navigate(`/eventdetails/${event.id}`)}
-          className="mt-4 w-full cursor-pointer bg-black hover:bg-blue-600 text-white py-2 px-4 rounded-lg transition duration-300"
+          className="mt-4 w-32 cursor-pointer bg-black hover:bg-orange-500 text-white py-2 px-4 rounded-lg transition duration-300"
         >
           View Details
         </button>
