@@ -17,17 +17,6 @@ function UpdateArticle() {
   const [imagePreview, setImagePreview] = useState('');
   const [loading, setLoading] = useState(true);
 
-  const categories = [
-    'Technology',
-    'Lifestyle',
-    'Science',
-    'Health',
-    'Education',
-    'Environment',
-    'History',
-    'Self-Help',
-  ];
-
   // Fetch the article data when the component mounts
   useEffect(() => {
     const fetchArticle = async () => {
@@ -216,11 +205,11 @@ function UpdateArticle() {
               }`}
             >
               <option value="">Select Category</option>
-              {categories.map((categoryItem, index) => (
-                <option key={index} value={categoryItem.toLowerCase()}>
-                  {categoryItem}
-                </option>
-              ))}
+              <option value="Technology">Technology</option>
+              <option value="Lifestyle">Lifestyle</option>
+              <option value="Health">Health</option>
+              <option value="Sport">Sport</option>
+              <option value="Science">Science</option>
             </select>
             {errors.category && <p className="text-red-500 text-xs mt-1">{errors.category}</p>}
           </div>
