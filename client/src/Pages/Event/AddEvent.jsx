@@ -256,7 +256,7 @@ function AddEvent() {
         </div>
         <button
           type="submit"
-          className={`w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
+          className={`w-1/4 bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500 text-white py-2 rounded ${loading ? 'opacity-50 cursor-not-allowed' : ''}`}
           disabled={loading}
         >
           {loading ? 'Submitting...' : 'Submit'}
