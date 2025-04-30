@@ -9,7 +9,7 @@ const EventLayout = () => {
     <div className="flex h-screen bg-gray-100">
       <Sidebar />
       <main className="flex-1 p-8 overflow-y-auto">
-        <Outlet /> {/* Renders the child route (EventsList, AddEvent, UpdateEvent) */}
+        <Outlet /> {/* Renders the child route (EventList, AddEvent, UpdateEvent) */}
       </main>
     </div>
   );
